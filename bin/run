@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# fleet-ops — hatch-cell saturation ops skills autonomous rig (bin/run).
+# Primary operation: the operational scripts are installed to PATH via
+# ~/.local/bin (see README). bin/run surfaces the runnable surface and their
+# guidance without triggering destructive behavior (dry-run discipline).
+#   bin/run             list runnable ops + show usage of key destructive reapers
+#   bin/run <script>    print that script's --help
+set -euo pipefail
+cd "$(dirname "$0")/.."
+
+if [ -n "${1:-}" ]; then
+  echo "== fleet-ops run: $1 --help =="
+  exec ./"$1" --help
+fi
+
+echo "== fleet-ops run: runnable surface =="
+echo "Python ops:  $(echo *.py | tr '\n' ' ')"
+echo "Key guarded reapers (dry-run by default; --kill is explicit):"
+for s in orphan-reaper io-rate-reaper saturation-watchdog zombie-reaper; do
+  [ -f "$s" ] && { echo "  --- $s ---"; timeout 15 ./$s --help 2>&1 | head -1; }
+done
+echo "Run a specific help: bin/run <script>"

@@ -1,0 +1,7 @@
+# fleet-ops — autonomous rig task wiring (Phase-B).
+# bin/run = runnable surface + per-script help; bin/check = compile + syntax + dry-run smoke.
+
+[tasks]
+run = "./bin/run"
+check = "./bin/check"
+compile = "python3 -m py_compile *.py"
