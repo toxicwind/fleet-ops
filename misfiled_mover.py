@@ -32,7 +32,7 @@ import sys
 from pathlib import Path
 
 SQUAWK_ROOT = Path("/home/toxic/.fleet-bus/squawk-root")
-SEQ_ALLOC = Path("/home/toxic/estate/ranch/squawk/seq_alloc.py")
+SEQ_ALLOC = Path("/home/toxic/pens/estate/ranch/squawk/seq_alloc.py")
 INCIDENT_DIRS = ["--lane", "--channel", "fleet-misfiled-20261003"]
 MARKET_RES = [
     re.compile(r"^oracle(-|$)"),

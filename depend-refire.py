@@ -65,8 +65,8 @@ def _resolve_pf():
 
 
 PF = _resolve_pf()
-TOML = Path("/home/toxic/estate/pitchfork.toml")
-LOG = Path("/home/toxic/estate/var/logs/depend-refire.log")
+TOML = Path("/home/toxic/pens/estate/pitchfork.toml")
+LOG = Path("/home/toxic/pens/estate/var/logs/depend-refire.log")
 EVIDENCE = Path("/home/toxic/.local/state/fleet-ops/depend-refire-evidence.json")
 
 
@@ -78,7 +78,7 @@ def pf(*args: str) -> str:
     # pitchfork resolves daemon config from the project dir (pitchfork.toml);
     # without the right cwd, `start` reports "not found in config or state".
     p = subprocess.run([str(PF), *args], capture_output=True, text=True,
-                       timeout=30, cwd="/home/toxic/estate")
+                       timeout=30, cwd="/home/toxic/pens/estate")
     return p.stdout + p.stderr
 
 
